@@ -24,20 +24,6 @@ function useBreadcrumb(): string {
   return breadcrumbMap[segment] ?? segment.toUpperCase()
 }
 
-function toggleTheme() {
-  const html = document.documentElement
-  const isLight = html.getAttribute('data-theme') === 'light'
-  if (isLight) {
-    html.removeAttribute('data-theme')
-    try { localStorage.setItem('iamhub-theme', 'dark') } catch (_) {}
-  } else {
-    html.setAttribute('data-theme', 'light')
-    try { localStorage.setItem('iamhub-theme', 'light') } catch (_) {}
-  }
-  // update button text via DOM since it's a plain button
-  const btn = document.getElementById('theme-toggle')
-  if (btn) btn.textContent = isLight ? '☀' : '🌙'
-}
 
 export function Topbar() {
   const bc = useBreadcrumb()
@@ -68,14 +54,6 @@ export function Topbar() {
       </div>
       <div className="topbar-right">
         <div className="ico-btn alert">⚑</div>
-        <button
-          className="theme-toggle"
-          id="theme-toggle"
-          onClick={toggleTheme}
-          title="Toggle light/dark theme"
-        >
-          ☀
-        </button>
         <div className="ico-btn">⚙</div>
         <button
           className="btn-sec btn-em"

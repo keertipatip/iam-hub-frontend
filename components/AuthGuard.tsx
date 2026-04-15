@@ -40,10 +40,14 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
       }
     })
 
-    // While sitting on a protected page, listen for explicit sign-out.
-    if (!isProtected(pathname)) return
+    // Listen for auth state changes on both protected pages and auth-only pages.
+    // On auth-only pages we need SIGNED_IN to redirect to /feed.
+    // On protected pages we need SIGNED_OUT to redirect to /login.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
-      if (event === 'SIGNED_OUT') {
+      if (event === 'SIGNED_IN' && AUTH_ONLY_PAGES.includes(pathname)) {
+        router.replace('/feed')
+      }
+      if (event === 'SIGNED_OUT' && isProtected(pathname)) {
         router.replace('/login')
       }
     })
