@@ -553,9 +553,12 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none}
 }
 
 @media (max-width:768px) {
-  /* ── App shell ── */
-  .app{height:auto;min-height:100dvh}
+  /* ── Unlock body scroll — desktop uses inner-container scroll, mobile uses native body scroll ── */
+  html,body{height:auto;overflow-y:auto}
   body{overflow-x:hidden}
+
+  /* ── App shell ── */
+  .app{height:auto;min-height:100dvh;flex-direction:row}
 
   /* Sidebar becomes a fixed slide-in overlay */
   .sidebar{
@@ -567,9 +570,9 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none}
   .app.sidebar-mobile-open .sidebar-backdrop{display:block}
   .mobile-menu-btn{display:flex}
 
-  /* Main area fills full width */
-  .main-area{overflow:auto;min-height:0}
-  .page-container{overflow:visible}
+  /* Main area — natural height, no overflow lock */
+  .main-area{overflow:visible;height:auto;min-height:0;flex:1}
+  .page-container{overflow:visible;flex:none;height:auto;min-height:0}
 
   /* Topbar compact */
   .topbar{padding:0 12px;gap:8px;height:48px}
@@ -578,8 +581,8 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none}
   .search-wrap{display:none}
   .topbar-right{gap:6px}
 
-  /* Page layout */
-  .inner-page{padding:14px 16px}
+  /* Page layout — release inner overflow locks so body scrolls */
+  .inner-page{padding:14px 16px;overflow-y:visible;flex:none;height:auto}
   .page-header{padding:16px 16px 0}
   .ph-row{flex-direction:column;align-items:flex-start;gap:10px}
   .ph-title{font-size:26px}
@@ -594,7 +597,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none}
   /* Feed layout */
   .feed-layout{grid-template-columns:1fr;height:auto}
   .right-col{display:none}
-  .feed-col{padding:14px 16px;border-right:none;overflow-y:visible}
+  .feed-col{padding:14px 16px;border-right:none;overflow-y:visible;height:auto}
 
   /* Tab bar — horizontal scroll, no wrap */
   .tab-bar{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -608,14 +611,17 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none}
   .stat-grid{grid-template-columns:1fr 1fr}
 
   /* IDE layout */
-  .ide-layout{flex-direction:column}
+  .ide-layout{flex-direction:column;overflow:visible;height:auto}
   .ide-files{width:100%;max-height:90px;border-right:none;border-bottom:1px solid var(--border);flex-direction:row;overflow-x:auto;flex-shrink:0}
-  .ide-term{width:100%;height:180px;border-left:none;border-top:1px solid var(--border);flex-shrink:0}
-  .ide-code{padding:12px 14px}
+  .ide-term{width:100%;height:auto;min-height:160px;border-left:none;border-top:1px solid var(--border);flex-shrink:0}
+  .ide-code{padding:12px 14px;overflow:visible;height:auto}
 
   /* Simulator */
-  .sim-layout{flex-direction:column}
-  .sim-config{width:100%;max-height:260px;border-right:none;border-bottom:1px solid var(--border);padding:14px}
+  .sim-layout{flex-direction:column;overflow:visible;height:auto}
+  .sim-sub-view{overflow:visible;height:auto}
+  .sim-config{width:100%;max-height:none;border-right:none;border-bottom:1px solid var(--border);padding:14px}
+  .sim-trace{overflow:visible;height:auto}
+  .sim-trace-body{overflow:visible;height:auto;flex:none}
   .sim-bottom{grid-template-columns:1fr}
 
   /* Canvas side panels — hide on mobile (canvas is drag/desktop-only) */
