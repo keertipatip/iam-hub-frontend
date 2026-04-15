@@ -525,3 +525,136 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none}
 .auth-input{flex:1;background:none;border:none;outline:none;font-family:var(--mono);font-size:12px;color:var(--text)}
 .auth-input::placeholder{color:var(--text3)}
 .auth-field-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text3);margin-bottom:7px}
+
+/* ══════════════ NAMED RESPONSIVE GRID HELPERS ══════════════ */
+.tools-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.tools-section-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.artifacts-stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
+.artifacts-featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px}
+.artifacts-main-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px}
+.profile-rep-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.landing-features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+
+/* Sidebar backdrop — hidden by default, shown on mobile when sidebar is open */
+.sidebar-backdrop{display:none;position:fixed;inset:0;z-index:150;background:rgba(0,0,0,0.4);-webkit-tap-highlight-color:transparent}
+
+/* Mobile hamburger button — hidden on desktop */
+.mobile-menu-btn{display:none;width:34px;height:34px;align-items:center;justify-content:center;border:1px solid var(--border);background:var(--panel);cursor:pointer;color:var(--text2);font-size:18px;line-height:1;flex-shrink:0;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);transition:border-color 0.15s,color 0.15s}
+.mobile-menu-btn:hover{border-color:var(--border3);color:var(--text)}
+
+/* ══════════════ RESPONSIVE — TABLET / MOBILE ══════════════ */
+@media (max-width:900px) {
+  .tools-stats-grid{grid-template-columns:repeat(2,1fr)}
+  .tools-section-grid{grid-template-columns:repeat(2,1fr)}
+  .artifacts-stats-grid{grid-template-columns:repeat(3,1fr)}
+  .artifacts-featured-grid{grid-template-columns:1fr}
+  .artifacts-main-grid{grid-template-columns:repeat(2,1fr)}
+  .landing-features-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:768px) {
+  /* ── App shell ── */
+  .app{height:auto;min-height:100dvh}
+  body{overflow-x:hidden}
+
+  /* Sidebar becomes a fixed slide-in overlay */
+  .sidebar{
+    position:fixed;top:0;bottom:0;left:-240px;z-index:200;
+    width:220px;transition:left 0.25s ease;
+    box-shadow:none;
+  }
+  .app.sidebar-mobile-open .sidebar{left:0;box-shadow:4px 0 32px rgba(0,0,0,0.25)}
+  .app.sidebar-mobile-open .sidebar-backdrop{display:block}
+  .mobile-menu-btn{display:flex}
+
+  /* Main area fills full width */
+  .main-area{overflow:auto;min-height:0}
+  .page-container{overflow:visible}
+
+  /* Topbar compact */
+  .topbar{padding:0 12px;gap:8px;height:48px}
+  .topbar-divider{display:none}
+  .threat-meter{display:none}
+  .search-wrap{display:none}
+  .topbar-right{gap:6px}
+
+  /* Page layout */
+  .inner-page{padding:14px 16px}
+  .page-header{padding:16px 16px 0}
+  .ph-row{flex-direction:column;align-items:flex-start;gap:10px}
+  .ph-title{font-size:26px}
+  .ph-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .ph-actions .btn-sec{font-size:10px;padding:7px 12px}
+
+  /* Grid collapses */
+  .two-col{grid-template-columns:1fr}
+  .three-col{grid-template-columns:1fr 1fr}
+  .two-col-eq{grid-template-columns:1fr}
+
+  /* Feed layout */
+  .feed-layout{grid-template-columns:1fr;height:auto}
+  .right-col{display:none}
+  .feed-col{padding:14px 16px;border-right:none;overflow-y:visible}
+
+  /* Tab bar — horizontal scroll, no wrap */
+  .tab-bar{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tab-bar::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap;flex-shrink:0}
+
+  /* Data table — horizontal scroll */
+  .data-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* Stats */
+  .stat-grid{grid-template-columns:1fr 1fr}
+
+  /* IDE layout */
+  .ide-layout{flex-direction:column}
+  .ide-files{width:100%;max-height:90px;border-right:none;border-bottom:1px solid var(--border);flex-direction:row;overflow-x:auto;flex-shrink:0}
+  .ide-term{width:100%;height:180px;border-left:none;border-top:1px solid var(--border);flex-shrink:0}
+  .ide-code{padding:12px 14px}
+
+  /* Simulator */
+  .sim-layout{flex-direction:column}
+  .sim-config{width:100%;max-height:260px;border-right:none;border-bottom:1px solid var(--border);padding:14px}
+  .sim-bottom{grid-template-columns:1fr}
+
+  /* Canvas side panels — hide on mobile (canvas is drag/desktop-only) */
+  .canvas-node-palette{display:none !important}
+  .canvas-props-panel{display:none !important}
+
+  /* Toolbar — horizontal scroll */
+  .pg-toolbar{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;gap:4px}
+  .pg-toolbar::-webkit-scrollbar{display:none}
+
+  /* Tool runner — hide right side nav */
+  .tool-runner-nav{display:none !important}
+  .tool-inner-page{flex-direction:column !important}
+
+  /* Grids */
+  .tools-section-grid{grid-template-columns:1fr}
+  .artifacts-stats-grid{grid-template-columns:repeat(2,1fr)}
+  .artifacts-main-grid{grid-template-columns:1fr}
+  .profile-rep-grid{grid-template-columns:repeat(2,1fr)}
+  .landing-features-grid{grid-template-columns:1fr 1fr}
+  .explore-table-wrap{overflow-x:auto}
+
+  /* Events cards — stack date + content vertically on mobile */
+  .event-card-inner{flex-direction:column !important;gap:12px !important}
+  .event-card-actions{flex-shrink:0;align-self:flex-start}
+
+  /* Edit profile name row */
+  .profile-name-row{grid-template-columns:1fr !important}
+}
+
+@media (max-width:480px) {
+  .three-col{grid-template-columns:1fr}
+  .ph-title{font-size:22px}
+  .stat-val{font-size:22px}
+  .tl-grid2{grid-template-columns:1fr}
+  .tl-grid3{grid-template-columns:1fr 1fr}
+  .tools-stats-grid{grid-template-columns:1fr 1fr}
+  .landing-features-grid{grid-template-columns:1fr}
+  .artifacts-stats-grid{grid-template-columns:1fr 1fr}
+  .landing-cta-row{flex-direction:column !important}
+  .landing-cta-row a,.landing-cta-row button{text-align:center;box-sizing:border-box}
+}

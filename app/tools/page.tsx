@@ -137,7 +137,7 @@ export default function ToolsPage() {
         </div>
 
         {/* Stats row */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 24 }}>
+        <div className="tools-stats-grid">
           <div className="stat-cell"><div className="stat-val">34</div><div className="stat-key">total tools</div></div>
           <div className="stat-cell"><div className="stat-val em">100%</div><div className="stat-key">client-side</div></div>
           <div className="stat-cell"><div className="stat-val blue">0</div><div className="stat-key">data transmitted</div></div>
@@ -151,7 +151,7 @@ export default function ToolsPage() {
           return (
             <div key={section.id}>
               <div className="sec-divider">{section.label}</div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 28 }}>
+              <div className="tools-section-grid">
                 {sectionTools.map(tool => (
                   <div key={tool.id} className="tool-card">
                     <div className="tool-card-inner">

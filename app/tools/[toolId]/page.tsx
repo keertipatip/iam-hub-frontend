@@ -198,7 +198,7 @@ export default function ToolPage({ params }: Props) {
       </div>
 
       {/* Two-column layout: tool content + right nav */}
-      <div className="inner-page" style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+      <div className="inner-page tool-inner-page" style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
 
         {/* ── Main tool panel ── */}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -241,7 +241,7 @@ export default function ToolPage({ params }: Props) {
         </div>
 
         {/* ── Right sidebar: tool navigator ── */}
-        <div style={{
+        <div className="tool-runner-nav" style={{
           width: 220,
           flexShrink: 0,
           position: 'sticky',

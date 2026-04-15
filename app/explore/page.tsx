@@ -40,8 +40,8 @@ export default function ExplorePage() {
         </div>
 
         <div className="sec-divider">TOP OPERATORS</div>
-        <div style={{ border: '1px solid var(--border)', background: 'var(--panel)', overflow: 'hidden', clipPath: 'polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)' }}>
-          <table className="data-table">
+        <div className="explore-table-wrap" style={{ border: '1px solid var(--border)', background: 'var(--panel)', overflow: 'hidden', clipPath: 'polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)' }}>
+          <table className="data-table" style={{ minWidth: 560 }}>
             <thead>
               <tr><th>OPERATOR</th><th>SPECIALTY</th><th>REP</th><th>POSTS</th><th>ARTIFACTS</th><th>STATUS</th></tr>
             </thead>

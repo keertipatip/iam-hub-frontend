@@ -99,7 +99,7 @@ export default function ProfilePage() {
             </div>
 
             <div className="sec-divider">REPUTATION</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, marginBottom: 20 }}>
+            <div className="profile-rep-grid">
               <div className="stat-cell"><div className="stat-val">—</div><div className="stat-key">followers</div></div>
               <div className="stat-cell"><div className="stat-val">—</div><div className="stat-key">posts</div></div>
               <div className="stat-cell"><div className="stat-val">—</div><div className="stat-key">artifacts</div></div>

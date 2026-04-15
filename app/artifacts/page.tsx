@@ -182,7 +182,7 @@ export default function ArtifactsPage() {
         </div>
 
         {/* Stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 10, marginBottom: 24 }}>
+        <div className="artifacts-stats-grid">
           <div className="stat-cell"><div className="stat-val">48</div><div className="stat-key">total artifacts</div></div>
           <div className="stat-cell"><div className="stat-val amb">1.8K</div><div className="stat-key">remixes</div></div>
           <div className="stat-cell"><div className="stat-val">6.2K</div><div className="stat-key">downloads</div></div>
@@ -194,7 +194,7 @@ export default function ArtifactsPage() {
         {filterKey === 'all' && !search && (
           <>
             <div className="sec-divider">FEATURED</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 14, marginBottom: 28 }}>
+            <div className="artifacts-featured-grid">
               {FEATURED.map(art => (
                 <div key={art.name} className="artifact-card">
                   <div className="artifact-card-inner">
@@ -238,7 +238,7 @@ export default function ArtifactsPage() {
             // no artifacts match the current filter
           </div>
         ) : (
-          <div id="artifact-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14, marginBottom: 32 }}>
+          <div id="artifact-grid" className="artifacts-main-grid">
             {filtered.map(card => (
               <ArtifactCard key={card.data.name} card={card} onView={setDrawerArtifact} />
             ))}

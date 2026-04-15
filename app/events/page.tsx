@@ -17,7 +17,7 @@ export default function EventsPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
           <div className="g-card" style={{ borderColor: 'rgba(0,255,136,0.25)' }}>
             <div className="g-card-inner">
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+              <div className="event-card-inner" style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
                 <div style={{ textAlign: 'center', minWidth: 56, padding: 8, background: 'var(--void)', border: '1px solid var(--em-dim)' }}>
                   <div style={{ fontFamily: 'var(--display)', fontSize: 24, color: 'var(--em)' }}>28</div>
                   <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--text3)' }}>FEB</div>
@@ -36,7 +36,7 @@ export default function EventsPage() {
           </div>
           <div className="g-card">
             <div className="g-card-inner">
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+              <div className="event-card-inner" style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
                 <div style={{ textAlign: 'center', minWidth: 56, padding: 8, background: 'var(--void)', border: '1px solid var(--border2)' }}>
                   <div style={{ fontFamily: 'var(--display)', fontSize: 24, color: 'var(--amber)' }}>05</div>
                   <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--text3)' }}>MAR</div>
@@ -55,7 +55,7 @@ export default function EventsPage() {
           </div>
           <div className="g-card">
             <div className="g-card-inner">
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+              <div className="event-card-inner" style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
                 <div style={{ textAlign: 'center', minWidth: 56, padding: 8, background: 'var(--void)', border: '1px solid var(--border2)' }}>
                   <div style={{ fontFamily: 'var(--display)', fontSize: 24, color: 'var(--amber)' }}>12</div>
                   <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--text3)' }}>MAR</div>

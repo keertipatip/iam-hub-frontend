@@ -32,10 +32,10 @@ export default function HomePage() {
   }, [router])
 
   return (
-    <div style={{ height: '100vh', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100dvh', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
 
       {/* ── Hero ── */}
-      <section style={{ padding: '72px 48px 48px', maxWidth: 900, margin: '0 auto', width: '100%' }}>
+      <section style={{ padding: 'clamp(32px,6vw,72px) clamp(20px,5vw,48px) clamp(28px,4vw,48px)', maxWidth: 900, margin: '0 auto', width: '100%' }}>
         <div style={{
           fontFamily: 'var(--mono)', fontSize: 9, letterSpacing: 3,
           color: 'var(--em)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8,
@@ -44,7 +44,7 @@ export default function HomePage() {
         </div>
 
         <h1 style={{
-          fontFamily: 'var(--mono)', fontSize: 42, fontWeight: 600,
+          fontFamily: 'var(--mono)', fontSize: 'clamp(26px,5vw,42px)', fontWeight: 600,
           color: 'var(--text)', lineHeight: 1.15, margin: '0 0 16px',
           letterSpacing: -1,
         }}>
@@ -60,7 +60,7 @@ export default function HomePage() {
           All tools run entirely in your browser — no data leaves your machine.
         </p>
 
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+        <div className="landing-cta-row" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <Link
             href="/signup"
             style={{
@@ -68,7 +68,7 @@ export default function HomePage() {
               background: 'var(--em)', color: '#000', padding: '11px 28px',
               textDecoration: 'none', letterSpacing: 1,
               clipPath: 'polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)',
-              transition: 'opacity .15s',
+              transition: 'opacity .15s', display: 'inline-block',
             }}
           >
             GET STARTED FREE →
@@ -79,7 +79,7 @@ export default function HomePage() {
               fontFamily: 'var(--mono)', fontSize: 12,
               background: 'none', color: 'var(--text)', padding: '11px 28px',
               textDecoration: 'none', letterSpacing: 1,
-              border: '1px solid var(--border)',
+              border: '1px solid var(--border)', display: 'inline-block',
               clipPath: 'polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)',
             }}
           >
@@ -90,7 +90,7 @@ export default function HomePage() {
             style={{
               fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--text3)',
               padding: '11px 18px', textDecoration: 'none', letterSpacing: 1,
-              alignSelf: 'center',
+              alignSelf: 'center', display: 'inline-block',
             }}
           >
             Sign in →
@@ -99,11 +99,11 @@ export default function HomePage() {
       </section>
 
       {/* ── Stats row ── */}
-      <section style={{ padding: '0 48px 40px', maxWidth: 900, margin: '0 auto', width: '100%' }}>
-        <div style={{ display: 'flex', gap: 2 }}>
+      <section style={{ padding: '0 clamp(20px,5vw,48px) clamp(20px,3vw,40px)', maxWidth: 900, margin: '0 auto', width: '100%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
           {STATS.map(s => (
             <div key={s.label} style={{
-              flex: 1, padding: '14px 16px',
+              padding: '14px 16px',
               background: 'var(--panel)', border: '1px solid var(--border)',
               fontFamily: 'var(--mono)',
             }}>
@@ -115,14 +115,14 @@ export default function HomePage() {
       </section>
 
       {/* ── Features grid ── */}
-      <section style={{ padding: '0 48px 56px', maxWidth: 900, margin: '0 auto', width: '100%' }}>
+      <section style={{ padding: '0 clamp(20px,5vw,48px) clamp(32px,5vw,56px)', maxWidth: 900, margin: '0 auto', width: '100%' }}>
         <div style={{
           fontFamily: 'var(--mono)', fontSize: 9, letterSpacing: 3,
           color: 'var(--text4)', marginBottom: 20,
         }}>
           // WHAT&apos;S INSIDE
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+        <div className="landing-features-grid">
           {FEATURES.map(f => (
             <div key={f.label} style={{
               padding: '18px 20px',
@@ -145,10 +145,11 @@ export default function HomePage() {
 
       {/* ── Footer ── */}
       <footer style={{
-        marginTop: 'auto', padding: '20px 48px',
+        marginTop: 'auto', padding: 'clamp(14px,2vw,20px) clamp(20px,5vw,48px)',
         borderTop: '1px solid var(--border)',
         fontFamily: 'var(--mono)', fontSize: 9, letterSpacing: 1,
-        color: 'var(--text4)', display: 'flex', gap: 24, alignItems: 'center',
+        color: 'var(--text4)', display: 'flex', gap: 'clamp(12px,3vw,24px)', alignItems: 'center',
+        flexWrap: 'wrap',
         maxWidth: 900, margin: '0 auto', width: '100%',
       }}>
         <span style={{ color: 'var(--em)' }}>IAMHUB</span>

@@ -113,7 +113,7 @@ export default function CanvasPage() {
 
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {/* Node palette */}
-        <div style={{ width: 160, borderRight: '1px solid var(--border)', background: 'var(--panel)', padding: 12, overflowY: 'auto', flexShrink: 0 }}>
+        <div className="canvas-node-palette" style={{ width: 160, borderRight: '1px solid var(--border)', background: 'var(--panel)', padding: 12, overflowY: 'auto', flexShrink: 0 }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--text4)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 10 }}>// NODES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {NODE_PALETTE.map(p => (
@@ -202,7 +202,7 @@ export default function CanvasPage() {
         </div>
 
         {/* Properties panel */}
-        <div style={{ width: 220, borderLeft: '1px solid var(--border)', background: 'var(--panel)', padding: 14, overflowY: 'auto', flexShrink: 0 }}>
+        <div className="canvas-props-panel" style={{ width: 220, borderLeft: '1px solid var(--border)', background: 'var(--panel)', padding: 14, overflowY: 'auto', flexShrink: 0 }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--text4)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 12 }}>// PROPERTIES</div>
           <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--text3)', marginBottom: 8 }}>Select a node to edit properties</div>
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12, marginTop: 8 }}>

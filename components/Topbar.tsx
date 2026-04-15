@@ -29,8 +29,21 @@ export function Topbar() {
   const bc = useBreadcrumb()
   const { toast } = useToast()
 
+  function openMobileSidebar() {
+    ;(window as unknown as Record<string, unknown> & { toggleMobileSidebar?: () => void })
+      .toggleMobileSidebar?.()
+  }
+
   return (
     <header className="topbar">
+      {/* Hamburger — visible only on mobile via CSS */}
+      <button
+        className="mobile-menu-btn"
+        onClick={openMobileSidebar}
+        aria-label="Open navigation"
+      >
+        ☰
+      </button>
       <div className="breadcrumb">
         IAMHUB <span style={{ opacity: 0.3, margin: '0 4px' }}>/</span>
         <span className="bc-active" id="bc">{bc}</span>

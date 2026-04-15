@@ -133,7 +133,7 @@ export default function EditProfilePage() {
 
           {/* Section: Identity */}
           <div className="sec-divider">IDENTITY</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+          <div className="profile-name-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
             <Field label="GIVEN_NAME">
               <input
                 style={inputStyle} type="text" placeholder="Jane"
