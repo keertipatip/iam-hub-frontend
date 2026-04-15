@@ -1,0 +1,82 @@
+# ─── Dependencies ───────────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ─── Build outputs ──────────────────────────────────────────────────────────
+.next/
+out/
+dist/
+build/
+
+# ─── Next.js specific ────────────────────────────────────────────────────────
+next-env.d.ts
+*.tsbuildinfo
+.next/cache/
+
+# ─── Environment variables ──────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# ─── Lock files (optional — remove these lines if you want to commit them) ──
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ─── Go build artifacts ─────────────────────────────────────────────────────
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+go.work
+go.work.sum
+
+# ─── IDE / Editor ────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ─── OS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ─── Logs ────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# ─── Testing ─────────────────────────────────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ─── Misc ────────────────────────────────────────────────────────────────────
+*.tgz
+.cache/
+.parcel-cache/
+*.html.bak
+
+# ─── Scratch / local-only files ──────────────────────────────────────────────
+iam-community.html
