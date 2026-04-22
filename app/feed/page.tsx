@@ -5,7 +5,7 @@ import { Composer } from '@/components/feed/Composer'
 import { FeedPosts } from '@/components/feed/PostCard'
 import { RightCol } from '@/components/feed/RightCol'
 
-const TABS = ['ALL_POSTS', 'FOLLOWING', 'ARTICLES', 'QUESTIONS', 'ARTIFACTS']
+const TABS = ['All', 'Following', 'Articles', 'Questions', 'Artifacts']
 
 export default function FeedPage() {
   const [activeTab, setActiveTab] = useState(0)
