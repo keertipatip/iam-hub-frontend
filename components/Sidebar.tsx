@@ -61,29 +61,29 @@ function useAuthState(): AuthState {
 
 const navGroups = [
   {
-    label: '// discover',
+    label: 'Discover',
     items: [
-      { page: 'feed', href: '/feed', icon: '▦', label: 'Feed' },
-      { page: 'explore', href: '/explore', icon: '◎', label: 'Explore' },
-      { page: 'articles', href: '/articles', icon: '≡', label: 'Articles', badge: '12', badgeClass: '' },
-      { page: 'artifacts', href: '/artifacts', icon: '⬢', label: 'Artifacts' },
+      { page: 'feed',      href: '/feed',      icon: '⊞', label: 'Feed' },
+      { page: 'explore',   href: '/explore',   icon: '⊙', label: 'Explore' },
+      { page: 'articles',  href: '/articles',  icon: '≡',  label: 'Articles',  badge: '12', badgeClass: '' },
+      { page: 'artifacts', href: '/artifacts', icon: '◈',  label: 'Artifacts' },
     ],
   },
   {
-    label: '// community',
+    label: 'Community',
     items: [
-      { page: 'channels', href: '/channels', icon: '#', label: 'Channels', badge: '3', badgeClass: 'red' },
-      { page: 'events', href: '/events', icon: '◈', label: 'Events', badge: '2', badgeClass: 'em' },
-      { page: 'mentorship', href: '/mentorship', icon: '△', label: 'Mentorship' },
+      { page: 'channels',   href: '/channels',   icon: '#',  label: 'Channels',   badge: '3', badgeClass: 'red' },
+      { page: 'events',     href: '/events',     icon: '◷',  label: 'Events',     badge: '2', badgeClass: 'em' },
+      { page: 'mentorship', href: '/mentorship', icon: '△',  label: 'Mentorship' },
     ],
   },
   {
-    label: '// dev tools',
+    label: 'Dev Tools',
     items: [
-      { page: 'ide', href: '/ide', icon: '▷', label: 'Playground' },
-      { page: 'canvas', href: '/canvas', icon: '◻', label: 'Flow Canvas' },
-      { page: 'simulator', href: '/simulator', icon: '⬡', label: 'Simulations' },
-      { page: 'tools', href: '/tools', icon: '⚒', label: 'Tools' },
+      { page: 'ide',       href: '/ide',       icon: '▷', label: 'Playground' },
+      { page: 'canvas',    href: '/canvas',    icon: '□',  label: 'Flow Canvas' },
+      { page: 'simulator', href: '/simulator', icon: '⬡',  label: 'Simulations' },
+      { page: 'tools',     href: '/tools',     icon: '⚙',  label: 'Tools' },
     ],
   },
 ]
@@ -98,30 +98,19 @@ export function Sidebar() {
   const activePage = pageFromPathname(pathname)
   const { user, loggedIn } = useAuthState()
 
-  const btnBase: React.CSSProperties = {
-    display: 'block', background: 'none', border: '1px solid var(--border)',
-    fontFamily: 'var(--mono)', fontSize: 10, padding: '5px 10px', cursor: 'pointer',
-    marginTop: 8, width: '100%',
-    clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%)',
-    transition: 'all 0.15s', textAlign: 'center' as const,
-  }
-
   return (
     <aside className="sidebar" id="sidebar">
       <div className="sidebar-head">
         <div className="logo-row">
-          <div className="logo-shield">
-            <svg viewBox="0 0 16 16" fill="none">
-              <path d="M8 1L14 4V9C14 12 11 14.5 8 15.5C5 14.5 2 12 2 9V4L8 1Z" stroke="#00ff88" strokeWidth="1.2" fill="none"/>
-              <path d="M5.5 8L7 9.5L10.5 6" stroke="#00ff88" strokeWidth="1.2" strokeLinecap="round"/>
+          <div className="logo-mark">
+            <svg viewBox="0 0 16 16" fill="none" width="16" height="16">
+              <path d="M8 1.5L13.5 4.5V10C13.5 12.5 11 14.5 8 15C5 14.5 2.5 12.5 2.5 10V4.5L8 1.5Z" fill="white"/>
+              <path d="M5.5 8L7 9.5L10.5 6" stroke="#111" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
           <div className="logo-wordmark">IAMHUB</div>
         </div>
         <div className="logo-sub">Identity &amp; Access Management</div>
-        <div className="sys-status">
-          <div className="dot"></div>SYS_OPERATIONAL // v3.1.4
-        </div>
       </div>
 
       {navGroups.map(group => (
@@ -153,54 +142,56 @@ export function Sidebar() {
               <div className="user-hex">{user.initials}</div>
               <div>
                 <div className="u-name">{user.name}</div>
-                <div className="u-role">{user.role}</div>
+                <div className="u-role" style={{ fontSize: 11, color: 'var(--text-3)' }}>{user.role}</div>
               </div>
             </Link>
             <button
               type="button"
               onClick={async () => { await supabase.auth.signOut(); router.replace('/login') }}
-              title="Sign out"
-              style={{ ...btnBase, color: 'var(--text3)' }}
-              onMouseOver={e => { e.currentTarget.style.borderColor = 'var(--red-dim)'; e.currentTarget.style.color = 'var(--red)' }}
-              onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text3)' }}
+              style={{
+                width: '100%', padding: '7px 12px',
+                background: 'none', border: '1px solid var(--border)',
+                borderRadius: 'var(--r-md)',
+                fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--text-3)',
+                cursor: 'pointer', transition: 'all .15s', textAlign: 'center' as const,
+              }}
+              onMouseOver={e => { e.currentTarget.style.borderColor = 'var(--red-soft)'; e.currentTarget.style.color = 'var(--red)'; e.currentTarget.style.background = 'var(--red-soft)' }}
+              onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-3)'; e.currentTarget.style.background = 'none' }}
             >
-              ⏻ SIGN OUT
+              Sign out
             </button>
           </>
         ) : (
           <>
-            <div className="user-block" style={{ cursor: 'default', opacity: 0.5 }}>
+            <div className="user-block" style={{ cursor: 'default', opacity: 0.45 }}>
               <div className="user-hex" style={{ fontSize: 10 }}>?</div>
               <div>
                 <div className="u-name">Guest</div>
-                <div className="u-role">NOT_SIGNED_IN</div>
+                <div className="u-role">Not signed in</div>
               </div>
             </div>
             <Link
               href="/login"
               style={{
-                ...btnBase,
-                color: 'var(--em)',
-                borderColor: 'var(--em-dim)',
-                textDecoration: 'none',
-                display: 'block',
-                textAlign: 'center',
+                display: 'block', textAlign: 'center', padding: '8px 12px',
+                background: 'var(--text)', color: 'var(--bg)',
+                borderRadius: 'var(--r-md)', fontFamily: 'var(--sans)',
+                fontSize: 13, fontWeight: 500, textDecoration: 'none', transition: 'opacity .15s',
               }}
             >
-              → SIGN IN
+              Sign in
             </Link>
             <Link
               href="/signup"
               style={{
-                ...btnBase,
-                color: 'var(--text3)',
-                textDecoration: 'none',
-                display: 'block',
-                textAlign: 'center',
-                marginTop: 4,
+                display: 'block', textAlign: 'center', padding: '7px 12px',
+                background: 'none', border: '1px solid var(--border)',
+                color: 'var(--text-2)', borderRadius: 'var(--r-md)',
+                fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 400,
+                textDecoration: 'none', transition: 'all .15s',
               }}
             >
-              + SIGN UP
+              Create account
             </Link>
           </>
         )}

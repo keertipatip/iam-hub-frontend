@@ -25,112 +25,117 @@ export default function LoginPage() {
 
   return (
     <div style={{
-      position: 'fixed', inset: 0, zIndex: 500, display: 'flex',
-      alignItems: 'center', justifyContent: 'center',
-      background: 'var(--void)', overflow: 'hidden',
+      position: 'fixed', inset: 0, zIndex: 500,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      background: 'var(--bg)', overflow: 'hidden',
     }}>
-      {/* Ambient overlays */}
-      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0,255,136,0.04) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: '10%', left: '8%', width: 320, height: 320, background: 'radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '15%', right: '10%', width: 240, height: 240, background: 'radial-gradient(circle, rgba(0,170,255,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      {/* Subtle dot-grid background */}
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(var(--border) 1px, transparent 1px)', backgroundSize: '28px 28px', opacity: .5, pointerEvents: 'none' }} />
+      {/* Soft gradient orbs */}
+      <div style={{ position: 'absolute', top: -120, right: -120, width: 400, height: 400, background: 'radial-gradient(circle, var(--accent-soft) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: -80, left: -80, width: 300, height: 300, background: 'radial-gradient(circle, var(--blue-soft) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       {/* Login panel */}
-      <div style={{ width: 420, maxWidth: '94vw', animation: 'authFadeIn 0.4s ease', position: 'relative', zIndex: 1 }}>
+      <div style={{ width: 380, maxWidth: '94vw', position: 'relative', zIndex: 1, animation: 'slideUp 0.3s ease' }}>
 
-        {/* Brand */}
-        <div style={{ textAlign: 'center', marginBottom: 36 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 52, height: 52, border: '1px solid var(--em-dim)', marginBottom: 14, background: 'rgba(0,255,136,0.06)', clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
-            <svg width="24" height="24" viewBox="0 0 16 16" fill="none">
-              <path d="M8 1L14 4V9C14 12 11 14.5 8 15.5C5 14.5 2 12 2 9V4L8 1Z" stroke="#00ff88" strokeWidth="1.2" fill="none"/>
-              <path d="M5.5 8L7 9.5L10.5 6" stroke="#00ff88" strokeWidth="1.2" strokeLinecap="round"/>
-            </svg>
+        {/* Logo */}
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+            <div style={{ width: 36, height: 36, background: 'var(--text)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
+                <path d="M8 1.5L13.5 4.5V10C13.5 12.5 11 14.5 8 15C5 14.5 2.5 12.5 2.5 10V4.5L8 1.5Z" fill="white"/>
+                <path d="M5.5 8L7 9.5L10.5 6" stroke="#111" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)', letterSpacing: '-.3px', fontFamily: 'var(--sans)' }}>IAMHUB</div>
           </div>
-          <div style={{ fontFamily: 'var(--display)', fontSize: 32, letterSpacing: 4, color: 'var(--text)', lineHeight: 1 }}>IAMHUB</div>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--text3)', letterSpacing: 2, marginTop: 5 }}>IDENTITY &amp; ACCESS MANAGEMENT</div>
+          <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--text)', letterSpacing: '-.4px', marginBottom: 8, fontFamily: 'var(--sans)' }}>Welcome back</div>
+          <div style={{ fontSize: 14, color: 'var(--text-3)', fontFamily: 'var(--sans)' }}>Sign in to your IAM workspace</div>
         </div>
 
         {/* Card */}
-        <div style={{ background: 'var(--panel)', border: '1px solid var(--border)', clipPath: 'polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)', position: 'relative' }}>
-          <div style={{ position: 'absolute', top: 0, right: 0, borderTop: '16px solid var(--border2)', borderLeft: '16px solid transparent' }} />
+        <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 18, padding: '28px', boxShadow: 'var(--shadow-xl)' }}>
 
-          {/* Card header */}
-          <div style={{ padding: '20px 24px 14px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 7, height: 7, background: 'var(--em)', boxShadow: '0 0 8px rgba(0,255,136,0.5)' }} />
-            <span style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: 2, color: 'var(--text3)' }}>// OPERATOR_AUTH</span>
-            <span style={{ marginLeft: 'auto', fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--text4)' }}>v3.1.4</span>
+          {/* Error */}
+          {error && (
+            <div style={{ marginBottom: 16, padding: '10px 14px', background: 'var(--red-soft)', border: '1px solid var(--red)', borderRadius: 10, fontSize: 13, color: 'var(--red)', fontFamily: 'var(--sans)' }}>
+              {error}
+            </div>
+          )}
+
+          {/* Email */}
+          <div style={{ marginBottom: 12 }}>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: 1, color: 'var(--text-3)', marginBottom: 6 }}>EMAIL</div>
+            <input
+              type="email"
+              placeholder="you@company.com"
+              autoComplete="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && document.getElementById('login-pw')?.focus()}
+              style={{
+                width: '100%', padding: '10px 14px',
+                border: '1px solid var(--border)', borderRadius: 10,
+                background: 'var(--bg-secondary)',
+                fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--text)',
+                outline: 'none', transition: 'border-color .15s', boxSizing: 'border-box',
+              }}
+              onFocus={e => (e.currentTarget.style.borderColor = 'var(--border-strong)')}
+              onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
+            />
           </div>
 
-          <div style={{ padding: 24 }}>
-            {/* Error */}
-            {error && (
-              <div style={{ marginBottom: 16, padding: '10px 14px', background: 'rgba(255,51,68,0.1)', border: '1px solid rgba(255,51,68,0.3)', fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--red)', clipPath: 'polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%)' }}>
-                ✕ {error}
-              </div>
-            )}
-
-            {/* Email */}
-            <div style={{ marginBottom: 16 }}>
-              <div className="auth-field-label">EMAIL</div>
-              <div className="auth-input-wrap">
-                <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--text4)' }}>$&gt;</span>
-                <input
-                  className="auth-input"
-                  type="email"
-                  placeholder="operator@example.com"
-                  autoComplete="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && document.getElementById('login-pw')?.focus()}
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div style={{ marginBottom: 20 }}>
-              <div className="auth-field-label">ACCESS_KEY</div>
-              <div className="auth-input-wrap">
-                <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--text4)' }}>🔑</span>
-                <input
-                  id="login-pw"
-                  className="auth-input"
-                  type={showPw ? 'text' : 'password'}
-                  placeholder="••••••••"
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && attemptLogin()}
-                />
-                <button
-                  onClick={() => setShowPw(v => !v)}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--text4)', padding: 0 }}
-                >
-                  {showPw ? 'HIDE' : 'SHOW'}
-                </button>
-              </div>
-            </div>
-
-            {/* Submit */}
-            <button
-              onClick={attemptLogin}
-              disabled={loading}
-              style={{ width: '100%', padding: 12, background: loading ? 'var(--border2)' : 'var(--em)', color: 'var(--void)', border: 'none', fontFamily: 'var(--mono)', fontSize: 12, fontWeight: 700, letterSpacing: 2, cursor: loading ? 'not-allowed' : 'pointer', clipPath: 'polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)', boxShadow: loading ? 'none' : '0 0 20px rgba(0,255,136,0.2)', transition: 'box-shadow 0.2s' }}
-              onMouseOver={e => { if (!loading) e.currentTarget.style.boxShadow = '0 0 36px rgba(0,255,136,0.4)' }}
-              onMouseOut={e => { if (!loading) e.currentTarget.style.boxShadow = '0 0 20px rgba(0,255,136,0.2)' }}
+          {/* Password */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: 1, color: 'var(--text-3)', marginBottom: 6 }}>PASSWORD</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, border: '1px solid var(--border)', borderRadius: 10, background: 'var(--bg-secondary)', padding: '0 14px', transition: 'border-color .15s' }}
+              onFocusCapture={e => (e.currentTarget.style.borderColor = 'var(--border-strong)')}
+              onBlurCapture={e => (e.currentTarget.style.borderColor = 'var(--border)')}
             >
-              {loading ? 'AUTHENTICATING...' : 'AUTHENTICATE →'}
-            </button>
-
-            {/* Signup link */}
-            <div style={{ textAlign: 'center', marginTop: 18, fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--text3)' }}>
-              No account?&nbsp;
-              <Link href="/signup" style={{ color: 'var(--em)', textDecoration: 'underline' }}>REQUEST_ACCESS →</Link>
+              <input
+                id="login-pw"
+                type={showPw ? 'text' : 'password'}
+                placeholder="••••••••"
+                autoComplete="current-password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && attemptLogin()}
+                style={{ flex: 1, background: 'none', border: 'none', outline: 'none', fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--text)', padding: '10px 0' }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPw(v => !v)}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--text-4)', padding: 0, flexShrink: 0 }}
+              >
+                {showPw ? 'HIDE' : 'SHOW'}
+              </button>
             </div>
           </div>
-        </div>
 
-        {/* Footer */}
-        <div style={{ textAlign: 'center', marginTop: 20, fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--text4)', letterSpacing: 1 }}>
-          IAMHUB // SECURE OPERATOR PORTAL // ALL ACCESS LOGGED
+          {/* Submit */}
+          <button
+            type="button"
+            onClick={attemptLogin}
+            disabled={loading}
+            style={{
+              width: '100%', padding: 11,
+              background: loading ? 'var(--border-med)' : 'var(--text)',
+              color: 'var(--bg)', border: 'none', borderRadius: 10,
+              fontFamily: 'var(--sans)', fontSize: 14, fontWeight: 600,
+              cursor: loading ? 'not-allowed' : 'pointer',
+              transition: 'opacity .15s', marginTop: 4,
+            }}
+            onMouseOver={e => { if (!loading) e.currentTarget.style.opacity = '.85' }}
+            onMouseOut={e => { e.currentTarget.style.opacity = '1' }}
+          >
+            {loading ? 'Signing in…' : 'Sign in'}
+          </button>
+
+          {/* Signup link */}
+          <div style={{ textAlign: 'center', marginTop: 20, fontSize: 13, color: 'var(--text-3)', fontFamily: 'var(--sans)' }}>
+            Don&apos;t have an account?&nbsp;
+            <Link href="/signup" style={{ color: 'var(--text)', fontWeight: 500, textDecoration: 'underline' }}>Create one</Link>
+          </div>
         </div>
       </div>
     </div>
